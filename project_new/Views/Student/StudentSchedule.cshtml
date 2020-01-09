@@ -1,0 +1,102 @@
+﻿@model List<project_new.Models.Courses>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentSchedule</title>
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/styles/For tables.css" rel="stylesheet" />
+    <link href="~/styles/navbar.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #0026ff}
+
+        th {
+          background-color: #4CAF50;
+          color: black;
+        }
+  </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <a href="/Account/StudentHomePage" class="Button"> Home</a>
+            <a href="/Student/StudentExams" class="Button"> Exams</a>
+            <a href="/Student/StudentCourse" class="Button"> Schedule</a>
+
+        </div>
+
+        <center>
+            <h1 style="color:white">Courses details</h1>
+            <table id="Courses">
+                <tr style="color:white">
+
+                    <th>Lecturer</th>
+                    <th>Course</th>
+                    <th>Hour</th>
+                    <th>Day</th>
+                </tr>
+                <tr>
+                    @foreach (var course in Model)
+                    {
+                    <tr style="color:white">
+                        <td>@course.LecturerName</td>
+                        <td>@course.CourseName</td>
+                        <td>@course.Hour - @course.Hour</td>
+                        <td>@course.Day</td>
+                    </tr>
+                }
+
+                    <tr>
+
+                </table>
+            </center>
+
+        </div>
+
+    </body>
+</html>

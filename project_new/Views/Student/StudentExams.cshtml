@@ -1,0 +1,106 @@
+﻿@using project_new.Models
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentCourse</title>
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/styles/For tables.css" rel="stylesheet" />
+    <link href="~/styles/navbar.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #0026ff
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <a href="/Account/StudentHomePage" class="Button"> Home</a>
+            <a href="/Student/StudentExams" class="Button"> Exams</a>
+            <a href="/Student/StudentCourse" class="Button"> Schedule</a>
+            <a href="/Student/StudentGrades" class="Button"> Grades</a>
+        </div>
+        <center>
+            <h1 style="color:black">Courses details</h1>
+            <table id="customers">
+                <tr style="color:white">
+                    <th>Course Name</th>
+                    <th>Lecturer Name</th>
+                    <th>Moed A</th>
+                    <th>Class A</th>
+                    <th>Moed B</th>
+                    <th>Class B</th>
+                </tr>
+                <tr>
+                    @foreach (Course_StuCourse_Lec x in ViewBag.Cour)
+                    {
+
+                <tr style="color:white">
+                    <td>@x.coursename</td>
+                    <td>@x.FirstNameLec @x.LastNameLec</td>
+                    <td>@x.moedA</td>
+                    <td>@x.classA</td>
+                    <td>@x.moedB</td>>
+                    <td>@x.classB</td>>
+                </tr>
+                }
+                </table>
+            </center>
+
+
+        </div>
+
+    </body>
+</html>

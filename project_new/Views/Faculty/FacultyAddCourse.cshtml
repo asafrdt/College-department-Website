@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LecturerCourse</title>
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/styles/navbar.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            width: 50%; /* Set a width if needed */
+            display: block; /* Make the buttons appear below each other */
+        }
+
+            .btn-group button:not(:last-child) {
+                border-bottom: none; /* Prevent double borders */
+            }
+
+            /* Add a background color on hover */
+            .btn-group button:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <a href="/Account/FacultyHomePage" class="Button">Home</a>
+
+        </div>
+
+        <center>
+            <h2>Add New Course:</h2>
+            <div class="btn-group">
+                <form action="FacultyAddCourse" method="post">
+                    <div class=" pass-w3l">
+                        <br />Course id: <input class="pass" type="text" name="CourseId" placeholder="" required="">
+                        course Name: <input class="pass" type="text" name="CourseName" placeholder="" required="">
+                        <br />Lecturer id: <input class="pass" type="text" name="LecturerId" placeholder="" required="">
+
+                        <br /> Day: <input class="pass" type="text" name="Day" placeholder="" required="">
+                        Class: <input class="pass" type="text" name="Class" placeholder="" required="">
+                        <br />Start Hour: <input class="pass" type="text" name="StartHour" placeholder="" required="">
+                        End Hour: <input class="pass" type="text" name="EndHour" placeholder="" required="">
+                        <br />moed A date: <input class="pass" type="text" name="MoedADate" placeholder="" required="">
+                        moed A Class: <input class="pass" type="text" name="MoedAClass" placeholder="" required="">
+                        <br /> moed B date: <input class="pass" type="text" name="MoedBDate" placeholder="" required="">
+                        moed B Class: <input class="pass" type="text" name="MoedBClass" placeholder="" required="">
+
+
+
+                    </div>
+                    <br />
+                    <button>Submit</button>
+
+               
+            </div>
+        </center>
+    </div>
+
+
+</body>
+</html>

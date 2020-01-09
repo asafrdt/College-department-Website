@@ -1,0 +1,163 @@
+﻿@using project_new.Models
+@model project_new.Models.Cou_Lec_Stu
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LecturerCourse</title>
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/styles/navbar.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #0026ff
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+    </style>
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <a href="/Account/LecturerHomePage" class="Button">Home</a>
+            <a href="/Lecturer/LecturerSchedule" class="Button">Schedule</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    More
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/Lecturer/LecturerExams" class="Button">Exams</a>
+                    <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
+                    <a href="/Lecturer/LecturerChat" class="Button">Chat</a>
+                </div>
+
+            </div>
+        </div>
+        <center>
+            <h2>Find Course</h2>
+            <form action="MyStudent"  method="post">
+                <div class=" pass-w3l">
+                    <input class="pass" type="text" name="CourseNameTb" placeholder="" required="">
+                </div>
+                <button>Find Courses</button>
+            </form>
+            <h1 style="color:black">Courses details</h1>
+            <table id="customers">
+                <tr style="color:white">
+                    <th>Course Name</th>
+                    <th>Student Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Grade</th>
+
+                </tr>
+                <tr>
+
+                    @if (Model != null)
+                    {
+                        if (Model.info != null)
+                        {
+
+                            foreach (var item in Model.info)
+                            {
+                            <tr style="color:white">
+                                <td>@Html.DisplayFor(m => item.coursename)</td>
+                                <td>@Html.DisplayFor(m => item.StudentId)</td>
+                                <td>@Html.DisplayFor(m => item.FirstNameStu )</td>
+                                <td>@Html.DisplayFor(m => item.LastNameStu)</td>
+                                <td>@Html.DisplayFor(m => item.Grade)</td>
+
+                            </tr>
+                            }
+
+                        }
+                    }
+                </table>
+            </center>
+
+        </div>
+
+    </body>
+</html>

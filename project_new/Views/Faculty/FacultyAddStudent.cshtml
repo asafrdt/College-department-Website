@@ -1,0 +1,86 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LecturerCourse</title>
+    <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/styles/navbar.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            width: 50%; /* Set a width if needed */
+            display: block; /* Make the buttons appear below each other */
+        }
+
+            .btn-group button:not(:last-child) {
+                border-bottom: none; /* Prevent double borders */
+            }
+
+            /* Add a background color on hover */
+            .btn-group button:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <a href="/Account/FacultyHomePage" class="Button">Home</a>
+
+        </div>
+
+        <center>
+            <h2>Add New Student</h2>
+            <div class="btn-group">
+                <form action="FacultyAddStudent" method="post">
+                    <div class=" pass-w3l">
+                        UserId: <input class="pass" type="text" name="UserId" placeholder="" required="">
+                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="">
+                        <br /><br /> Password: <input class="pass" type="text" name="Password" placeholder="" required="">
+                        FirstName: <input class="pass" type="text" name="FirstName" placeholder="" required="">
+                        <br /><br /> LastName: <input class="pass" type="text" name="LastName" placeholder="" required="">
+
+
+                    </div>
+                    <br />
+                    <button>Add Student</button>
+
+                </form>
+                <h2>Add Student To Course: </h2>
+
+                <form action="FacultyAddStudent" method="post">
+                    <div class=" pass-w3l">
+                        Studentid: <input class="pass" type="text" name="Studentid" placeholder="" required="">
+                        CourseId: <input class="pass" type="text" name="CourseId" placeholder="" required="">
+                    </div>
+                    <br />
+
+                    <button>Add Student To Course</button>
+                </form>
+            </div>
+        </center>
+    </div>
+
+
+</body>
+</html>
