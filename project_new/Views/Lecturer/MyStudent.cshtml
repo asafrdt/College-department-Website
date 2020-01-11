@@ -130,7 +130,8 @@
                     <th>Student Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Grade</th>
+                    <th>GradeA</th>
+                    <th>GradeB</th>
 
                 </tr>
                 <tr>
@@ -142,14 +143,17 @@
 
                             foreach (var item in Model.info)
                             {
-                            <tr style="color:white">
-                                <td>@Html.DisplayFor(m => item.coursename)</td>
-                                <td>@Html.DisplayFor(m => item.StudentId)</td>
-                                <td>@Html.DisplayFor(m => item.FirstNameStu )</td>
-                                <td>@Html.DisplayFor(m => item.LastNameStu)</td>
-                                <td>@Html.DisplayFor(m => item.Grade)</td>
-
-                            </tr>
+                                <tr style="color:white">
+                                    <td>@Html.DisplayFor(m => item.coursename)</td>
+                                    <td>@Html.DisplayFor(m => item.StudentId)</td>
+                                    <td>@Html.DisplayFor(m => item.FirstNameStu)</td>
+                                    <td>@Html.DisplayFor(m => item.LastNameStu)</td>
+                                    <td>@Html.DisplayFor(m => item.GradeA)</td>
+                                    @if (@Html.DisplayFor(m => item.GradeB) != null)
+                                    {
+                                        <td>@Html.DisplayFor(m => item.GradeB)</td>
+                                    }
+                                </tr>
                             }
 
                         }

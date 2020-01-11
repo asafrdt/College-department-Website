@@ -130,6 +130,10 @@
                     <th>Day</th>
                     <th>Hour</th>
                     <th>Class</th>
+                    <th>Moed A</th>
+                    <th>Class A</th>
+                    <th>Moed B</th>
+                    <th>Class B</th>
 
                 </tr>
                 <tr>
@@ -140,16 +144,20 @@
 
                             foreach (var item in Model.info)
                             {
-                            <tr style="color:white">
-                                <td>@Html.DisplayFor(m => item.coursename)</td>
-                                <td>@Html.DisplayFor(m => item.day)</td>
-                                <td>@Html.DisplayFor(m => item.startHour) - @Html.DisplayFor(m => item.endHour)</td>
-                                <td>@Html.DisplayFor(m => item.Class)</td>
-                            </tr>
-                        }
+                                <tr style="color:white">
+                                    <td>@Html.DisplayFor(m => item.coursename)</td>
+                                    <td>@Html.DisplayFor(m => item.day)</td>
+                                    <td>@Html.DisplayFor(m => item.startHour) - @Html.DisplayFor(m => item.endHour)</td>
+                                    <td>@Html.DisplayFor(m => item.Class)</td>
+                                    <td>@Html.DisplayFor(m => item.moedADay) / @Html.DisplayFor(m => item.moedAMonth) / @Html.DisplayFor(m => item.moedAYear) </td>
+                                    <td>@Html.DisplayFor(m => item.classA)</td>
+                                    <td>@Html.DisplayFor(m => item.moedBDay) / @Html.DisplayFor(m => item.moedBMonth) / @Html.DisplayFor(m => item.moedBYear) </td>
+                                    <td>@Html.DisplayFor(m => item.classB)</td>
+                                </tr>
+                            }
 
+                        }
                     }
-                }
                 </table>
             </center>
 

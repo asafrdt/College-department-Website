@@ -47,33 +47,31 @@
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
-        </div>
+        </div>   
 
         <center>
             <h2>Add New Course:</h2>
             <div class="btn-group">
                 <form action="FacultyAddCourse" method="post">
                     <div class=" pass-w3l">
-                        <br />Course id: <input class="pass" type="text" name="CourseId" placeholder="" required="">
-                        course Name: <input class="pass" type="text" name="CourseName" placeholder="" required="">
-                        <br />Lecturer id: <input class="pass" type="text" name="LecturerId" placeholder="" required="">
+                        <br />Course id: <input class="pass" type="number" name="CourseId" placeholder="" required="" pattern="[0-9]{1,50}">
+                        course Name: <input class="pass" type="text" name="CourseName" placeholder="" required="" pattern="[a-zA-z]{1,50}">
+                        <br />Lecturer id: <input class="pass" type="number" name="LecturerId" placeholder="" required="" pattern="[0-9]{1,50}">
 
-                        <br /> Day: <input class="pass" type="text" name="Day" placeholder="" required="">
+                        <br /> Day: <input class="pass" type="text" name="Day" placeholder="" required="" pattern="[a-zA-z]{1,9}">
                         Class: <input class="pass" type="text" name="Class" placeholder="" required="">
-                        <br />Start Hour: <input class="pass" type="text" name="StartHour" placeholder="" required="">
-                        End Hour: <input class="pass" type="text" name="EndHour" placeholder="" required="">
-                        <br />moed A date: <input class="pass" type="text" name="MoedADate" placeholder="" required="">
+                        <br />Start Hour: <input class="pass" type="time" name="StartHour" placeholder="" required="">
+                        End Hour: <input class="pass" type="time" name="EndHour" placeholder="" required="">
+                        <br />moed A date:  <br /> day:<input class="pass" type="text" name="moedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1999-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4" >
                         moed A Class: <input class="pass" type="text" name="MoedAClass" placeholder="" required="">
-                        <br /> moed B date: <input class="pass" type="text" name="MoedBDate" placeholder="" required="">
+                        <br />moed B date:  <br /> day:<input class="pass" type="text" name="moedBDay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedBMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedBYear" placeholder="1999-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
                         moed B Class: <input class="pass" type="text" name="MoedBClass" placeholder="" required="">
-
-
 
                     </div>
                     <br />
                     <button>Submit</button>
 
-               
+
             </div>
         </center>
     </div>

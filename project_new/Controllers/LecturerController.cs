@@ -24,7 +24,7 @@ namespace Project.Controllers
             int id = (int)Session["ID"];
             SqlConnection con = new SqlConnection();
             con.ConnectionString = "Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI";
-            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,day,startHour,endHour,class from cou_lec_stu where LecturerId= '" + id + "'", con); ;
+            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,day,startHour,endHour,class,moedAYear,moedAMonth,moedADay,classA,moedBYear,moedBMonth,moedBDay,classB from cou_lec_stu where LecturerId= '" + id + "'", con); ;
             sqlcomm.Connection = con;
             con.Open();
             SqlDataReader sdr = sqlcomm.ExecuteReader();
@@ -39,8 +39,15 @@ namespace Project.Controllers
                     details.day = sdr["day"].ToString();
                     details.startHour = TimeSpan.Parse(sdr["startHour"].ToString());
                     details.endHour = TimeSpan.Parse(sdr["endHour"].ToString());
-
                     details.Class = sdr["Class"].ToString();
+                    details.moedADay = Convert.ToInt32(sdr["moedADay"]);
+                    details.moedAMonth = Convert.ToInt32(sdr["moedAMonth"]);
+                    details.moedAYear = Convert.ToInt32(sdr["moedAYear"]);
+                    details.classA = sdr["classA"].ToString();
+                    details.moedBDay = Convert.ToInt32(sdr["moedBDay"]);
+                    details.moedBMonth = Convert.ToInt32(sdr["moedBMonth"]);
+                    details.moedBYear = Convert.ToInt32(sdr["moedBYear"]);
+                    details.classB = sdr["classB"].ToString();
                     objmodel.Add(details);
 
                 }
@@ -57,7 +64,7 @@ namespace Project.Controllers
             int id = (int)Session["ID"];
             SqlConnection con = new SqlConnection();
             con.ConnectionString = "Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI";
-            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,day,startHour,endHour,class from cou_lec_stu where LecturerId= '" + id + "' and coursename= '"+ coursename+"'", con); ;
+            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,day,startHour,endHour,class,moedAYear,moedAMonth,moedADay,classA,moedBYear,moedBMonth,moedBDay,classB from cou_lec_stu where LecturerId= '" + id + "' and coursename= '" + coursename+"'", con); ;
             sqlcomm.Connection = con;
             con.Open();
             SqlDataReader sdr = sqlcomm.ExecuteReader();
@@ -72,8 +79,15 @@ namespace Project.Controllers
                     details.day = sdr["day"].ToString();
                     details.startHour = TimeSpan.Parse(sdr["startHour"].ToString());
                     details.endHour = TimeSpan.Parse(sdr["endHour"].ToString());
-
                     details.Class = sdr["Class"].ToString();
+                    details.moedADay = Convert.ToInt32(sdr["moedADay"]);
+                    details.moedAMonth = Convert.ToInt32(sdr["moedAMonth"]);
+                    details.moedAYear = Convert.ToInt32(sdr["moedAYear"]);
+                    details.classA = sdr["classA"].ToString();
+                    details.moedBDay = Convert.ToInt32(sdr["moedBDay"]);
+                    details.moedBMonth = Convert.ToInt32(sdr["moedBMonth"]);
+                    details.moedBYear = Convert.ToInt32(sdr["moedBYear"]);
+                    details.classB = sdr["classB"].ToString();
                     objmodel.Add(details);
 
                 }
@@ -97,7 +111,7 @@ namespace Project.Controllers
             string coursename = Request.Form["CourseNameTb"].ToString();
             SqlConnection con = new SqlConnection();
             con.ConnectionString = "Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI";
-            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,StudentId,FirstNameStu,LastNameStu,Grade from [dbo].[cou_lec_stu] where coursename= '" + coursename+ "'", con); ;
+            SqlCommand sqlcomm = new SqlCommand(@"select DISTINCT coursename,StudentId,FirstNameStu,LastNameStu,GradeA,GradeB from [dbo].[cou_lec_stu] where coursename= '" + coursename+ "'", con); ;
             sqlcomm.Connection = con;
             con.Open();
             SqlDataReader sdr = sqlcomm.ExecuteReader();
@@ -112,7 +126,11 @@ namespace Project.Controllers
                     details.StudentId = sdr["StudentId"].ToString();
                     details.FirstNameStu = sdr["FirstNameStu"].ToString();
                     details.LastNameStu = sdr["LastNameStu"].ToString();
-                    details.Grade = Convert.ToInt32(sdr["Grade"]);
+                    details.GradeA = Convert.ToInt32(sdr["GradeA"]);
+                    if (sdr["GradeB"].ToString() !="" )
+                    {
+                        details.GradeB = Convert.ToInt32(sdr["GradeB"]);
+                    }
                     objmodel.Add(details);
 
                 }
@@ -121,11 +139,6 @@ namespace Project.Controllers
 
             }
             return View("MyStudent",cour);
-        }
-
-        public ActionResult LecturerChat()
-        {
-            return View();
         }
 
         public ActionResult LecturerSchedule(Courses cour)
@@ -162,6 +175,83 @@ namespace Project.Controllers
         public ActionResult LecturerExams()
         {
             return View();
+        }
+
+
+
+        public ActionResult LecturerUpdateExamsGrades()
+        {
+            var id = (int)Session["ID"];
+
+            if (Request.Form["CourseIdTB"] != null && Request.Form["StudentIdTB"] != null && Request.Form["NewGradeBTB"] != null)
+            {
+                int CourseId = Int32.Parse(Request.Form["CourseIdTB"]);
+                int StudentId = Int32.Parse(Request.Form["StudentIdTB"]);
+                int NewGradeB = Int32.Parse(Request.Form["NewGradeBTB"]);
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
+                SqlDataAdapter sda1 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '"+ id + "'", con);
+                DataTable dt1 = new DataTable();
+                sda1.Fill(dt1);
+                if (dt1.Rows.Count == 1)
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter("select sicStudentId,sicCourseId from [StudentCourses] where sicStudentId ='" + StudentId + "' and sicCourseId ='" + CourseId + "'", con);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    if (dt.Rows.Count == 1)
+                    {
+                        con.Open();
+                        SqlCommand sqlcomm = new SqlCommand();
+                        sqlcomm.CommandText = "update StudentCourses set GradeB= '" + NewGradeB + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                        sqlcomm.Connection = con;
+                        sqlcomm.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                    else
+                    {
+                        //message box
+
+                    }
+                }
+            }
+
+
+            else if (Request.Form["CourseIdTB"] != null && Request.Form["StudentIdTB"] != null && Request.Form["NewGradeATB"] != null)
+            {
+                int CourseId = Int32.Parse(Request.Form["CourseIdTB"]);
+                int StudentId = Int32.Parse(Request.Form["StudentIdTB"]);
+                int NewGradeA = Int32.Parse(Request.Form["NewGradeATB"]);
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
+                SqlDataAdapter sda1 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '" + id + "'", con);
+                DataTable dt1 = new DataTable();
+                sda1.Fill(dt1);
+                if (dt1.Rows.Count == 1)
+                {
+                    SqlDataAdapter sda = new SqlDataAdapter("select sicStudentId,sicCourseId from [StudentCourses] where sicStudentId ='" + StudentId + "' and sicCourseId ='" + CourseId + "'", con);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    if (dt.Rows.Count == 1)
+                    {
+                        con.Open();
+                        SqlCommand sqlcomm = new SqlCommand();
+                        sqlcomm.CommandText = "update StudentCourses set GradeA= '" + NewGradeA + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                        sqlcomm.Connection = con;
+                        sqlcomm.ExecuteNonQuery();
+
+                        con.Close();
+                    }
+                    else
+                    {
+
+                        //message box
+
+                    }
+                }
+            }
+
+            return View("LecturerUpdateExamsGrades");
         }
     }
 

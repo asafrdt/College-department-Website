@@ -84,9 +84,9 @@
                     @foreach (var course in Model)
                     {
                     <tr style="color:white">
-                        <td>@course.LecturerName</td>
+                        <td>@course.LecturerId</td>
                         <td>@course.CourseName</td>
-                        <td>@course.Hour - @course.Hour</td>
+                        <td>@course.startHour - @course.endHour</td>
                         <td>@course.Day</td>
                     </tr>
                 }

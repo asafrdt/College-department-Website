@@ -12,13 +12,16 @@ namespace project_new.Models
         [Required]
         public string coursename { get; set; }
         [Required]
+        
         public string StudentId { get; set; }
         [Required]
         public string FirstNameStu { get; set; }
         [Required]
         public string LastNameStu { get; set; }
         [Required]
-        public int Grade { get; set; }
+        public int? GradeA { get; set; }
+        [Required]
+        public int? GradeB { get; set; }
 
         public List<Cou_Lec_Stu> info { get; set; }
    

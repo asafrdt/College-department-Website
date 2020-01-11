@@ -214,7 +214,6 @@
     <Content Include="Views\Error.cshtml" />
     <Content Include="Views\_LayoutPage1.cshtml" />
     <Content Include="Views\Lecturer\LecturerCourse.cshtml" />
-    <Content Include="Views\Lecturer\LecturerExams.cshtml" />
     <Content Include="Views\Lecturer\LecturerSchedule.cshtml" />
     <Content Include="Views\Lecturer\DisplayStudentInCourse.cshtml" />
     <Content Include="Views\Lecturer\LecturerMyCourses.cshtml" />
@@ -226,6 +225,7 @@
     <Content Include="Views\Faculty\FacultyUpdateExamsGrades.cshtml" />
     <Content Include="Views\Faculty\FacultyAddCourse.cshtml" />
     <Content Include="Views\Student\StudentGrades.cshtml" />
+    <Content Include="Views\Lecturer\LecturerUpdateExamsGrades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -30,11 +30,19 @@ namespace project_new.Models
         [Required]
         public int liLecturerId { get; set; }
         [Required]
-        public DateTime? moedA { get; set; }
+        public int moedAYear { get; set; }
+        [Required]
+        public int moedAMonth { get; set; }
+        [Required]
+        public int moedADay { get; set; }
         [Required]
         public string classA { get; set; }
         [Required]
-        public DateTime? moedB { get; set; }
+        public int moedBYear { get; set; }
+        [Required]
+        public int moedBMonth { get; set; }
+        [Required]
+        public int moedBDay { get; set; }
         [Required]
         public string classB { get; set; }
 

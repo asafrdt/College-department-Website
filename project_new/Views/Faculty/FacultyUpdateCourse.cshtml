@@ -54,11 +54,10 @@
             <div class="btn-group">
                 <form action="/Faculty/FacultyUpdateCourse" method="post">
                     <div class=" pass-w3l">
-                        Course id: <input class="pass" type="text" name="CourseIdTB" placeholder="" required="">
-                        <br />Start hour: <input class="pass" type="text" name="StartHourTB" placeholder="" required="">
-                        <br />End hour: <input class="pass" type="text" name="EndHourTB" placeholder="" required="">
-
-                        <br />day: <input class="pass" type="text" name="DayTB" placeholder="" required="">
+                        Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
+                        <br />Start hour: <input class="pass" type="time" name="StartHourTB" placeholder="" required="">
+                        <br />End hour: <input class="pass" type="time" name="EndHourTB" placeholder="" required="">
+                        <br />day: <input class="pass" type="text"  name="DayTB" placeholder="" required="" pattern="[A-Za-z]{1,9}">
 
 
                     </div>

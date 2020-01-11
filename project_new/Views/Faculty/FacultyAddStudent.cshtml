@@ -54,13 +54,11 @@
             <div class="btn-group">
                 <form action="FacultyAddStudent" method="post">
                     <div class=" pass-w3l">
-                        UserId: <input class="pass" type="text" name="UserId" placeholder="" required="">
-                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="">
-                        <br /><br /> Password: <input class="pass" type="text" name="Password" placeholder="" required="">
-                        FirstName: <input class="pass" type="text" name="FirstName" placeholder="" required="">
-                        <br /><br /> LastName: <input class="pass" type="text" name="LastName" placeholder="" required="">
-
-
+                        UserId: <input class="pass" type="number" name="UserId" placeholder="" required="">
+                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="" pattern="[A-Za-z]{1,50}" >
+                        <br /><br /> Password: <input class="pass" type="text" name="Password" placeholder="" required="" pattern="[a-zA-Z0-9]{1,50}">
+                        FirstName: <input class="pass" type="text" name="FirstName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
+                        <br /><br /> LastName: <input class="pass" type="text" name="LastName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
                     </div>
                     <br />
                     <button>Add Student</button>
@@ -70,8 +68,8 @@
 
                 <form action="FacultyAddStudent" method="post">
                     <div class=" pass-w3l">
-                        Studentid: <input class="pass" type="text" name="Studentid" placeholder="" required="">
-                        CourseId: <input class="pass" type="text" name="CourseId" placeholder="" required="">
+                        Studentid: <input class="pass" type="number" name="Studentid" placeholder="" required="">
+                        CourseId: <input class="pass" type="number" name="CourseId" placeholder="" required="">
                     </div>
                     <br />
 

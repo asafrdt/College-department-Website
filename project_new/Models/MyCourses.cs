@@ -19,6 +19,22 @@ namespace project_new.Models
         public TimeSpan endHour { get; set; }
         [Required]
         public string Class { get; set; }
+        [Required]
+        public int moedAYear { get; set; }
+        [Required]
+        public int moedAMonth { get; set; }
+        [Required]
+        public int moedADay { get; set; }
+        [Required]
+        public string classA { get; set; }
+        [Required]
+        public int moedBYear { get; set; }
+        [Required]
+        public int moedBMonth { get; set; }
+        [Required]
+        public int moedBDay { get; set; }
+        [Required]
+        public string classB { get; set; }
 
         public List<MyCourses> info { get; set; }
     }
