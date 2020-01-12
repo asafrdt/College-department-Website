@@ -48,13 +48,12 @@
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
         </div>
-
         <center>
             @if ((string)@Session["error"] == "Course Not exist")
             {
-            <script style="color:white" type="text/javascript ">
-                alert("Course Not exist");
-            </script>
+                <script style="color:white" type="text/javascript ">
+                    alert("Course Not exist");
+                </script>
             }
             <h2>Edit Course Schdule</h2>
             <div class="btn-group">

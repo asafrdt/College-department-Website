@@ -48,13 +48,12 @@
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
         </div>
-
         <center>
             @if ((string)@Session["error"] == "Student Allready Exist in the System")
             {
-            <script style="color:white" type="text/javascript ">
-                alert("Student Allready Exist in the System");
-            </script>
+                <script style="color:white" type="text/javascript ">
+                    alert("Student Allready Exist in the System");
+                </script>
             }
             <h2>Add New Student</h2>
             <div class="btn-group">

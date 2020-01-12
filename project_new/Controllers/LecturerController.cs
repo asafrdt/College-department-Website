@@ -13,7 +13,10 @@ namespace Project.Controllers
 {
     public class LecturerController : Controller
     {
-
+        public ActionResult LecturerHomePage()
+        {
+            return View("LecturerHomePage");
+        }
         public ActionResult LecturerCourse()
         {
             return View("LecturerCourse");
@@ -191,28 +194,61 @@ namespace Project.Controllers
                 int NewGradeB = Int32.Parse(Request.Form["NewGradeBTB"]);
 
                 SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
-                SqlDataAdapter sda1 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '"+ id + "'", con);
+
+
+                SqlDataAdapter sda1 = new SqlDataAdapter("select Studentid from [Student] where StudentId ='" + StudentId + "'", con);
                 DataTable dt1 = new DataTable();
                 sda1.Fill(dt1);
-                if (dt1.Rows.Count == 1)
+                if (dt1.Rows.Count != 1)
+                {
+                    @Session["error"] = "Student not exist";
+                    return View("LecturerUpdateExamsGrades");
+                }
+                SqlDataAdapter sda2 = new SqlDataAdapter("select CourseId from [Course] where CourseId ='" + CourseId + "'", con);
+                DataTable dt2 = new DataTable();
+                sda2.Fill(dt2);
+                if (dt2.Rows.Count != 1)
+                {
+                    @Session["error"] = "Course not exist";
+                    return View("LecturerUpdateExamsGrades");
+                }
+
+
+
+                SqlDataAdapter sda3 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '"+ id + "'", con);
+                DataTable dt3 = new DataTable();
+                sda1.Fill(dt3);
+                if (dt3.Rows.Count == 1)
                 {
                     SqlDataAdapter sda = new SqlDataAdapter("select sicStudentId,sicCourseId from [StudentCourses] where sicStudentId ='" + StudentId + "' and sicCourseId ='" + CourseId + "'", con);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     if (dt.Rows.Count == 1)
                     {
-                        con.Open();
-                        SqlCommand sqlcomm = new SqlCommand();
-                        sqlcomm.CommandText = "update StudentCourses set GradeB= '" + NewGradeB + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
-                        sqlcomm.Connection = con;
-                        sqlcomm.ExecuteNonQuery();
+                        SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
+                        DataTable dt4 = new DataTable();
+                        sda4.Fill(dt4);
+                        if (dt4.Rows.Count == 1)
+                        {
 
-                        con.Close();
+                            con.Open();
+                            SqlCommand sqlcomm = new SqlCommand();
+                            sqlcomm.CommandText = "update StudentCourses set GradeB= '" + NewGradeB + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                            sqlcomm.Connection = con;
+                            sqlcomm.ExecuteNonQuery();
+
+                            con.Close();
+                        }
+                        else
+                        {
+                            @Session["error"] = "Cannot update grade due to schedule issues";
+                            return View("LecturerUpdateExamsGrades");
+                        }
                     }
                     else
                     {
-                        //message box
-
+                        @Session["error"] = "The student not sign to this course";
+                        return View("LecturerUpdateExamsGrades");
                     }
                 }
             }
@@ -225,36 +261,63 @@ namespace Project.Controllers
                 int NewGradeA = Int32.Parse(Request.Form["NewGradeATB"]);
 
                 SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
-                SqlDataAdapter sda1 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '" + id + "'", con);
-                DataTable dt1 = new DataTable();
-                sda1.Fill(dt1);
-                if (dt1.Rows.Count == 1)
+
+                SqlDataAdapter sda5 = new SqlDataAdapter("select StudentId from [Student] where StudentId ='" + StudentId + "'", con);
+                DataTable dt5 = new DataTable();
+                sda5.Fill(dt5);
+                if (dt5.Rows.Count != 1)
+                {
+                    @Session["error"] = "Student not exist";
+                    return View("LecturerUpdateExamsGrades");
+                }
+                SqlDataAdapter sda2 = new SqlDataAdapter("select CourseId from [Course] where CourseId ='" + CourseId + "'", con);
+                DataTable dt2 = new DataTable();
+                sda2.Fill(dt2);
+                if (dt2.Rows.Count != 1)
+                {
+                    @Session["error"] = "Course not exist";
+                    return View("LecturerUpdateExamsGrades");
+                }
+
+
+
+                SqlDataAdapter sda3 = new SqlDataAdapter("select LecturerId from [Course] where CourseId ='" + CourseId + "' and LecturerId= '" + id + "'", con);
+                DataTable dt3 = new DataTable();
+                sda3.Fill(dt3);
+                if (dt3.Rows.Count == 1)
                 {
                     SqlDataAdapter sda = new SqlDataAdapter("select sicStudentId,sicCourseId from [StudentCourses] where sicStudentId ='" + StudentId + "' and sicCourseId ='" + CourseId + "'", con);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     if (dt.Rows.Count == 1)
                     {
-                        con.Open();
-                        SqlCommand sqlcomm = new SqlCommand();
-                        sqlcomm.CommandText = "update StudentCourses set GradeA= '" + NewGradeA + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
-                        sqlcomm.Connection = con;
-                        sqlcomm.ExecuteNonQuery();
+                        SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
+                        DataTable dt4 = new DataTable();
+                        sda4.Fill(dt4);
+                        if (dt4.Rows.Count == 1)
+                        {
+                            con.Open();
+                            SqlCommand sqlcomm = new SqlCommand();
+                            sqlcomm.CommandText = "update StudentCourses set GradeA= '" + NewGradeA + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                            sqlcomm.Connection = con;
+                            sqlcomm.ExecuteNonQuery();
 
-                        con.Close();
+                            con.Close();
+                        }
+                        else
+                        {
+                            @Session["error"] = "Cannot update grade due to schedule issues";
+                            return View("LecturerUpdateExamsGrades");
+                        }
                     }
                     else
                     {
 
-                        //message box
-
+                        @Session["error"] = "The student not sign to this course";
+                        return View("LecturerUpdateExamsGrades");
                     }
                 }
-                else
-                {
-                    //message box
-
-                }
+               
             }
 
             return View("LecturerUpdateExamsGrades");

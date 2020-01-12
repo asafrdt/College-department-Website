@@ -385,13 +385,24 @@ namespace project_new.Controllers
                 sda.Fill(dt);
                 if (dt.Rows.Count == 1)
                 {
-                    con.Open();
-                    SqlCommand sqlcomm = new SqlCommand();
-                    sqlcomm.CommandText = "update StudentCourses set GradeB= '" + NewGradeB + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedBYear = '"+ DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month+ "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
-                    sqlcomm.Connection = con;
-                    sqlcomm.ExecuteNonQuery();
+                    SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
+                    DataTable dt4 = new DataTable();
+                    sda4.Fill(dt4);
+                    if (dt4.Rows.Count == 1)
+                    {
+                        con.Open();
+                        SqlCommand sqlcomm = new SqlCommand();
+                        sqlcomm.CommandText = "update StudentCourses set GradeB= '" + NewGradeB + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                        sqlcomm.Connection = con;
+                        sqlcomm.ExecuteNonQuery();
 
-                    con.Close();
+                        con.Close();
+                    }
+                    else
+                    {
+                        @Session["error"] = "Cannot update grade due to schedule issues";
+                        return View("FacultyUpdateExamsGrades");
+                    }
                 }
                 else
                 {
@@ -432,13 +443,23 @@ namespace project_new.Controllers
                 sda.Fill(dt);
                 if (dt.Rows.Count == 1)
                 {
-                    con.Open();
-                    SqlCommand sqlcomm = new SqlCommand();
-                    sqlcomm.CommandText = "update StudentCourses set GradeA= '" + NewGradeA + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
-                    sqlcomm.Connection = con;
-                    sqlcomm.ExecuteNonQuery();
-
-                    con.Close();
+                    SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
+                    DataTable dt4 = new DataTable();
+                    sda4.Fill(dt4);
+                    if (dt4.Rows.Count == 1)
+                    {
+                        con.Open();
+                        SqlCommand sqlcomm = new SqlCommand();
+                        sqlcomm.CommandText = "update StudentCourses set GradeA= '" + NewGradeA + "'where sicStudentId =  '" + StudentId + "'and sicCourseId = (select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "')";
+                        sqlcomm.Connection = con;
+                        sqlcomm.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    else
+                    {
+                        @Session["error"] = "Cannot update grade due to schedule issues";
+                        return View("FacultyUpdateExamsGrades");
+                    }
                 }
                 else
                 {

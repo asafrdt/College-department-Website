@@ -48,17 +48,8 @@
         <div class="navbar">
             <a href="/Account/LecturerHomePage" class="Button">Home</a>
             <a href="/Lecturer/LecturerSchedule" class="Button">Schedule</a>
-            <div class="dropdown">
-                <button class="dropbtn">
-                    More
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
-                    <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
-                </div>
-
-            </div>
+            <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
+            <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
         </div>
 
         <center>
@@ -68,7 +59,7 @@
                     <div class=" pass-w3l">
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
                         <br />Student id: <input class="pass" type="number" name="StudentIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
-                        <br />New Grade A: <input class="pass" type="number" name="NewGradeATB" placeholder="0-100" required="" pattern="[0-9]{1,3}">
+                        <br />New Grade A: <input class="pass" type="text" name="NewGradeATB" placeholder="0-100" required="" maxlength="3" pattern="^[1-9][0-9]?$|^100$|^0$">
                     </div>
                     <br />
                     <button>Update</button>
@@ -78,25 +69,35 @@
                     <div class=" pass-w3l">
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
                         <br />Student id: <input class="pass" type="number" name="StudentIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
-                        <br />New Grade B: <input class="pass" type="number" name="NewGradeBTB" placeholder="0-100" required="" pattern="[0-9]{1,3}">
+                        <br />New Grade B: <input class="pass" type="text" name="NewGradeBTB" placeholder="0-100" required="" maxlength="3" pattern="^[1-9][0-9]?$|^100$|^0$">
                     </div>
                     <br />
                     <button>Update</button>
 
                 </form>
-                @{
-                    ViewBag.Title = "HR_COE";
-                }
-                @if (TempData["testmsg"] != null)
+                @if ((string)@Session["error"] == "Student not exist")
                 {
-                    <script type="text/javascript">
-                        window.onload = function () {
-                            alert("Kos ohtok")
-                        };
+                    <script style="color:white" type="text/javascript ">
+                        alert("Student not exist");
                     </script>
-
-
-
+                }
+                @if ((string)@Session["error"] == "Course not exist")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Course not exist");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "The student not sign to this course")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("The student not sign to this course");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "Cannot update grade due to schedule issues")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Cannot update grade due to schedule issues");
+                    </script>
                 }
 
             </div>

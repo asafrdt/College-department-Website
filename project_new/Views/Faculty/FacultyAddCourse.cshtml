@@ -43,18 +43,11 @@
     </style>
 </head>
 <body>
-    @if ((string)@Session["error"] == "oper")
-    {
-        <script style="color:white" type="text/javascript ">
-            alert("you enter wrong course");
-        </script>
-    }
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
         </div>
-
         <center>
             <h2>Add New Course:</h2>
             <div class="btn-group">
@@ -80,9 +73,9 @@
                         }
                         @if ((string)@Session["error"] == "Lecturer Cannot register for this course due to overlapping schedule")
                         {
-                    <script style="color:white" type="text/javascript ">
-                        alert("Lecturer Cannot register for this course due to overlapping schedule");
-                    </script>
+                            <script style="color:white" type="text/javascript ">
+                                alert("Lecturer Cannot register for this course due to overlapping schedule");
+                            </script>
                         }
                     </div>
                     <br />

@@ -49,16 +49,15 @@
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
         </div>
-
         <center>
-          
+
             <h2>Update Exams Grades</h2>
             <div class="btn-group">
                 <form action="/Faculty/FacultyUpdateExamsGrades" method="post">
                     <div class=" pass-w3l">
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
                         <br />Student id: <input class="number" type="text" name="StudentIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
-                        <br />New Grade A: <input class="number" type="text" name="NewGradeATB" placeholder="0-100" required="" pattern="[0-9]{1,3}">
+                        <br />New Grade A: <input class="number" type="text" name="NewGradeATB" placeholder="0-100" required="" maxlength="3" pattern="^[1-9][0-9]?$|^100$|^0$">
                     </div>
                     <br />
                     <button>Update</button>
@@ -68,7 +67,7 @@
                     <div class=" pass-w3l">
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
                         <br />Student id: <input class="pass" type="number" name="StudentIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
-                        <br />New Grade B: <input class="pass" type="number" name="NewGradeBTB" placeholder="0-100" required="" pattern="[0-9]{1,3}">
+                        <br />New Grade B: <input class="pass" type="text" name="NewGradeBTB" placeholder="0-100" required="" maxlength="3" pattern="^[1-9][0-9]?$|^100$|^0$">
                     </div>
                     <br />
                     <button>Update</button>
@@ -90,6 +89,12 @@
                 {
                     <script style="color:white" type="text/javascript ">
                         alert("The student not sign to this course");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "Cannot update grade due to schedule issues")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Cannot update grade due to schedule issues");
                     </script>
                 }
 

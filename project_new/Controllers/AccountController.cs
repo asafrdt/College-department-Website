@@ -24,6 +24,14 @@ namespace project_new.Controllers
         {
             return View("StudentHomePage");
         }
+        public ActionResult LecturerHomePage()
+        {
+            return View("LecturerHomePage");
+        }
+        public ActionResult FacultyHomePage()
+        {
+            return View("FacultyHomePage");
+        }
         public ActionResult Verify()
         {
 

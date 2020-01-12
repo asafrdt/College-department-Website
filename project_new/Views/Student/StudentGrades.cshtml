@@ -86,21 +86,21 @@
                     @foreach (Course_StuCourse_Lec x in ViewBag.Cour)
                     {
 
-                <tr style="color:white">
-                    <td>@x.coursename</td>
-                    <td>@x.FirstNameLec @x.LastNameLec</td>
-                    <td>@x.GradeA</td>
-                    <td>@x.GradeB</td>
-                    @if (@x.GradeB != null)
-                    {
-                        <td>@x.GradeB</td>
-                    }
-                    else
-                    {
+                    <tr style="color:white">
+                        <td>@x.coursename</td>
+                        <td>@x.FirstNameLec @x.LastNameLec</td>
                         <td>@x.GradeA</td>
+                        <td>@x.GradeB</td>
+                        @if (@x.GradeB != null)
+                        {
+                            <td>@x.GradeB</td>
+                        }
+                        else
+                        {
+                            <td>@x.GradeA</td>
 
-                    }
-                </tr>
+                        }
+                    </tr>
                 }
                 </table>
             </center>
