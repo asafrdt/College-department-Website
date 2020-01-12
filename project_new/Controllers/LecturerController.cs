@@ -55,6 +55,7 @@ namespace Project.Controllers
                 con.Close();
 
             }
+            
 
             return View("LecturerMyCourses",cour);
         }
@@ -248,6 +249,11 @@ namespace Project.Controllers
                         //message box
 
                     }
+                }
+                else
+                {
+                    //message box
+
                 }
             }
 

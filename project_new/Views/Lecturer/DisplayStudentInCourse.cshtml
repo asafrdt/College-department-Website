@@ -125,13 +125,15 @@
             </form>
             <h1 style="color:black">Courses details</h1>
             <table id="customers">
+                
                 <tr style="color:white">
                     <th>Course Name</th>
                     <th>Student Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>GradeA</th>
-                    <th>GradeB</th>
+                    <th>Grade A</th>
+                    <th>Grade B</th>
+                    <th>Final Grade</th>
 
                 </tr>
                 <tr>
@@ -143,18 +145,26 @@
 
                             foreach (var item in Model.info)
                             {
-                            <tr style="color:white">
-                                <td>@Html.DisplayFor(m => item.coursename)</td>
-                                <td>@Html.DisplayFor(m => item.StudentId)</td>
-                                <td>@Html.DisplayFor(m => item.FirstNameStu )</td>
-                                <td>@Html.DisplayFor(m => item.LastNameStu)</td>
-                                <td>@Html.DisplayFor(m => item.GradeA)</td>
-                                @if (@Html.DisplayFor(m => item.GradeB) != null)
-                                {
-                                    <td>@Html.DisplayFor(m => item.GradeB)</td>
-                                }
+                <tr style="color:white">
+                    <td>@Html.DisplayFor(m => item.coursename)</td>
+                    <td>@Html.DisplayFor(m => item.StudentId)</td>
+                    <td>@Html.DisplayFor(m => item.FirstNameStu)</td>
+                    <td>@Html.DisplayFor(m => item.LastNameStu)</td>
+                    <td>@Html.DisplayFor(m => item.GradeA)</td>
+                    @if (@Html.DisplayFor(m => item.GradeB) != null)
+                    {
+                        <td>@Html.DisplayFor(m => item.GradeB)</td>
+                        <td>@Html.DisplayFor(m => item.GradeB)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td>@Html.DisplayFor(m => item.GradeA)</td>
 
-                            </tr>
+                    }
+
+
+                </tr>
                             }
 
                         }

@@ -51,14 +51,14 @@
         </div>
 
         <center>
-            <h2>Update Exams Grades</h2>
+            <h2>Update Exams Schedule</h2>
             <div class="btn-group">
                 <form action="/Faculty/FacultyUpdateExamsSchedule" method="post">
                     <div class=" pass-w3l">
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
                         <br />            <h2>Moed A:</h2>
 
-                        date: <br /> day: <input class="pass" type="text"  name="MoedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1990-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
+                        date: <br /> day: <input class="pass" type="text" name="MoedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1990-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
                         <br /><button>Update Moed A</button>
 
                     </div>
@@ -69,27 +69,19 @@
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="">
                         <br />            <h2>Moed B:</h2>
 
-                        date: <br /> day:<input class="pass" type="text" name="moedBDay" placeholder="1-31" required="" minlength="0" maxlength="2" > month:<input class="pass" type="text" name="moedBMonth" placeholder="1-12" required="">  year:<input class="pass" type="text" name="moedBYear" placeholder="1990-2999" required="">
+                        date: <br /> day:<input class="pass" type="text" name="moedBDay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedBMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">   year:<input class="pass" type="text" name="moedBYear" placeholder="1990-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
                         <br /><button>Update Moed B</button>
 
                     </div>
                     <br />
                 </form>
-   
-                @{
-                    ViewBag.Title = "HR_COE";
-                }
-                @if (TempData["testmsg"] != null)
+                @if ((string)@Session["error"] == "Course Not exist")
                 {
-                    <script type="text/javascript">
-                        window.onload = function () {
-                            alert("Kos ohtok")
-                        };
+                    <script style="color:white" type="text/javascript ">
+                        alert("Course Not exist");
                     </script>
-
-
-
                 }
+           
 
             </div>
         </center>

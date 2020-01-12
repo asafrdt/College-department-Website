@@ -43,11 +43,17 @@
     </style>
 </head>
 <body>
+    @if ((string)@Session["error"] == "oper")
+    {
+        <script style="color:white" type="text/javascript ">
+            alert("you enter wrong course");
+        </script>
+    }
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
 
-        </div>   
+        </div>
 
         <center>
             <h2>Add New Course:</h2>
@@ -62,11 +68,22 @@
                         Class: <input class="pass" type="text" name="Class" placeholder="" required="">
                         <br />Start Hour: <input class="pass" type="time" name="StartHour" placeholder="" required="">
                         End Hour: <input class="pass" type="time" name="EndHour" placeholder="" required="">
-                        <br />moed A date:  <br /> day:<input class="pass" type="text" name="moedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1999-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4" >
+                        <br />moed A date:  <br /> day:<input class="pass" type="text" name="moedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1999-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
                         moed A Class: <input class="pass" type="text" name="MoedAClass" placeholder="" required="">
                         <br />moed B date:  <br /> day:<input class="pass" type="text" name="moedBDay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedBMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedBYear" placeholder="1999-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
                         moed B Class: <input class="pass" type="text" name="MoedBClass" placeholder="" required="">
-
+                        @if ((string)@Session["error"] == "Course already exist")
+                        {
+                            <script style="color:white" type="text/javascript ">
+                                alert("Course already exist");
+                            </script>
+                        }
+                        @if ((string)@Session["error"] == "Lecturer Cannot register for this course due to overlapping schedule")
+                        {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Lecturer Cannot register for this course due to overlapping schedule");
+                    </script>
+                        }
                     </div>
                     <br />
                     <button>Submit</button>

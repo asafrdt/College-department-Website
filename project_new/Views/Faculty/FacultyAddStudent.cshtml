@@ -50,12 +50,18 @@
         </div>
 
         <center>
+            @if ((string)@Session["error"] == "Student Allready Exist in the System")
+            {
+            <script style="color:white" type="text/javascript ">
+                alert("Student Allready Exist in the System");
+            </script>
+            }
             <h2>Add New Student</h2>
             <div class="btn-group">
                 <form action="FacultyAddStudent" method="post">
                     <div class=" pass-w3l">
                         UserId: <input class="pass" type="number" name="UserId" placeholder="" required="">
-                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="" pattern="[A-Za-z]{1,50}" >
+                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="" pattern="[A-Za-z]{1,50}">
                         <br /><br /> Password: <input class="pass" type="text" name="Password" placeholder="" required="" pattern="[a-zA-Z0-9]{1,50}">
                         FirstName: <input class="pass" type="text" name="FirstName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
                         <br /><br /> LastName: <input class="pass" type="text" name="LastName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
@@ -65,7 +71,30 @@
 
                 </form>
                 <h2>Add Student To Course: </h2>
-
+                @if ((string)@Session["error"] == "Student Allready Sign to this course")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Student Allready Sign to this course");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "Student not exist")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Student not exist");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "Course not exist")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Course not exist");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "Cannot register for course due to overlapping schedule")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Cannot register for course due to overlapping schedule");
+                    </script>
+                }
                 <form action="FacultyAddStudent" method="post">
                     <div class=" pass-w3l">
                         Studentid: <input class="pass" type="number" name="Studentid" placeholder="" required="">

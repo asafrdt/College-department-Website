@@ -51,6 +51,7 @@
         </div>
 
         <center>
+          
             <h2>Update Exams Grades</h2>
             <div class="btn-group">
                 <form action="/Faculty/FacultyUpdateExamsGrades" method="post">
@@ -73,19 +74,23 @@
                     <button>Update</button>
 
                 </form>
-                @{
-                    ViewBag.Title = "HR_COE";
-                }
-                @if (TempData["testmsg"] != null)
+                @if ((string)@Session["error"] == "Student not exist")
                 {
-                    <script type="text/javascript">
-                        window.onload = function () {
-                            alert("Kos ohtok")
-                        };
+                    <script style="color:white" type="text/javascript ">
+                        alert("Student not exist");
                     </script>
-
-
-
+                }
+                @if ((string)@Session["error"] == "Course not exist")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("Course not exist");
+                    </script>
+                }
+                @if ((string)@Session["error"] == "The student not sign to this course")
+                {
+                    <script style="color:white" type="text/javascript ">
+                        alert("The student not sign to this course");
+                    </script>
                 }
 
             </div>

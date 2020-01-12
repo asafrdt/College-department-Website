@@ -130,8 +130,9 @@
                     <th>Student Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>GradeA</th>
-                    <th>GradeB</th>
+                    <th>Grade A</th>
+                    <th>Grade B</th>
+                    <th>Final Grade</th>
 
                 </tr>
                 <tr>
@@ -149,9 +150,16 @@
                                     <td>@Html.DisplayFor(m => item.FirstNameStu)</td>
                                     <td>@Html.DisplayFor(m => item.LastNameStu)</td>
                                     <td>@Html.DisplayFor(m => item.GradeA)</td>
-                                    @if (@Html.DisplayFor(m => item.GradeB) != null)
+                                    @if (item.GradeB != null)
                                     {
                                         <td>@Html.DisplayFor(m => item.GradeB)</td>
+                                        <td>@Html.DisplayFor(m => item.GradeB)</td>
+                                    }
+                                    else
+                                    {
+                                        <td> </td>
+                                        <td>@Html.DisplayFor(m => item.GradeA)</td>
+
                                     }
                                 </tr>
                             }

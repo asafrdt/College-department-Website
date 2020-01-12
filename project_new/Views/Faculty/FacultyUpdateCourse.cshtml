@@ -50,6 +50,12 @@
         </div>
 
         <center>
+            @if ((string)@Session["error"] == "Course Not exist")
+            {
+            <script style="color:white" type="text/javascript ">
+                alert("Course Not exist");
+            </script>
+            }
             <h2>Edit Course Schdule</h2>
             <div class="btn-group">
                 <form action="/Faculty/FacultyUpdateCourse" method="post">
@@ -57,7 +63,7 @@
                         Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,50}">
                         <br />Start hour: <input class="pass" type="time" name="StartHourTB" placeholder="" required="">
                         <br />End hour: <input class="pass" type="time" name="EndHourTB" placeholder="" required="">
-                        <br />day: <input class="pass" type="text"  name="DayTB" placeholder="" required="" pattern="[A-Za-z]{1,9}">
+                        <br />day: <input class="pass" type="text" name="DayTB" placeholder="" required="" pattern="[A-Za-z]{1,9}">
 
 
                     </div>
@@ -66,7 +72,7 @@
 
                 </form>
 
-                
+
             </div>
         </center>
     </div>
