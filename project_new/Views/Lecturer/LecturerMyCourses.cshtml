@@ -108,9 +108,8 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="/Lecturer/LecturerExams" class="Button">Exams</a>
+                    <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
                     <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
-                    <a href="/Lecturer/LecturerChat" class="Button">Chat</a>
                 </div>
 
             </div>
@@ -144,20 +143,20 @@
 
                             foreach (var item in Model.info)
                             {
-                                <tr style="color:white">
-                                    <td>@Html.DisplayFor(m => item.coursename)</td>
-                                    <td>@Html.DisplayFor(m => item.day)</td>
-                                    <td>@Html.DisplayFor(m => item.startHour) - @Html.DisplayFor(m => item.endHour)</td>
-                                    <td>@Html.DisplayFor(m => item.Class)</td>
-                                    <td>@Html.DisplayFor(m => item.moedADay) / @Html.DisplayFor(m => item.moedAMonth) / @Html.DisplayFor(m => item.moedAYear) </td>
-                                    <td>@Html.DisplayFor(m => item.classA)</td>
-                                    <td>@Html.DisplayFor(m => item.moedBDay) / @Html.DisplayFor(m => item.moedBMonth) / @Html.DisplayFor(m => item.moedBYear) </td>
-                                    <td>@Html.DisplayFor(m => item.classB)</td>
-                                </tr>
-                            }
-
+                            <tr style="color:white">
+                                <td>@Html.DisplayFor(m => item.coursename)</td>
+                                <td>@Html.DisplayFor(m => item.day)</td>
+                                <td>@Html.DisplayFor(m => item.startHour) - @Html.DisplayFor(m => item.endHour)</td>
+                                <td>@Html.DisplayFor(m => item.Class)</td>
+                                <td>@Html.DisplayFor(m => item.moedADay) / @Html.DisplayFor(m => item.moedAMonth) / @Html.DisplayFor(m => item.moedAYear) </td>
+                                <td>@Html.DisplayFor(m => item.classA)</td>
+                                <td>@Html.DisplayFor(m => item.moedBDay) / @Html.DisplayFor(m => item.moedBMonth) / @Html.DisplayFor(m => item.moedBYear) </td>
+                                <td>@Html.DisplayFor(m => item.classB)</td>
+                            </tr>
                         }
+
                     }
+                }
                 </table>
             </center>
 

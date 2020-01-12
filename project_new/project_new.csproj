@@ -203,7 +203,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Account\Error.cshtml" />
     <Content Include="Views\Account\FacultyHomePage.cshtml" />
-    <Content Include="Views\Account\LecturerHomePage.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\StudentHomePage.cshtml" />
     <Content Include="Views\Faculty\FacultyCourse.cshtml" />
@@ -226,6 +225,7 @@
     <Content Include="Views\Faculty\FacultyAddCourse.cshtml" />
     <Content Include="Views\Student\StudentGrades.cshtml" />
     <Content Include="Views\Lecturer\LecturerUpdateExamsGrades.cshtml" />
+    <Content Include="Views\Account\LecturerHomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

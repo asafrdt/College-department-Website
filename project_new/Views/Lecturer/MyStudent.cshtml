@@ -108,16 +108,15 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="/Lecturer/LecturerExams" class="Button">Exams</a>
+                    <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
                     <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
-                    <a href="/Lecturer/LecturerChat" class="Button">Chat</a>
                 </div>
 
             </div>
         </div>
         <center>
             <h2>Find Course</h2>
-            <form action="MyStudent"  method="post">
+            <form action="MyStudent" method="post">
                 <div class=" pass-w3l">
                     <input class="pass" type="text" name="CourseNameTb" placeholder="" required="">
                 </div>
@@ -144,28 +143,28 @@
 
                             foreach (var item in Model.info)
                             {
-                                <tr style="color:white">
-                                    <td>@Html.DisplayFor(m => item.coursename)</td>
-                                    <td>@Html.DisplayFor(m => item.StudentId)</td>
-                                    <td>@Html.DisplayFor(m => item.FirstNameStu)</td>
-                                    <td>@Html.DisplayFor(m => item.LastNameStu)</td>
+                            <tr style="color:white">
+                                <td>@Html.DisplayFor(m => item.coursename)</td>
+                                <td>@Html.DisplayFor(m => item.StudentId)</td>
+                                <td>@Html.DisplayFor(m => item.FirstNameStu)</td>
+                                <td>@Html.DisplayFor(m => item.LastNameStu)</td>
+                                <td>@Html.DisplayFor(m => item.GradeA)</td>
+                                @if (item.GradeB != null)
+                                {
+                                    <td>@Html.DisplayFor(m => item.GradeB)</td>
+                                    <td>@Html.DisplayFor(m => item.GradeB)</td>
+                                }
+                                else
+                                {
+                                    <td> </td>
                                     <td>@Html.DisplayFor(m => item.GradeA)</td>
-                                    @if (item.GradeB != null)
-                                    {
-                                        <td>@Html.DisplayFor(m => item.GradeB)</td>
-                                        <td>@Html.DisplayFor(m => item.GradeB)</td>
-                                    }
-                                    else
-                                    {
-                                        <td> </td>
-                                        <td>@Html.DisplayFor(m => item.GradeA)</td>
 
-                                    }
-                                </tr>
-                            }
-
+                                }
+                            </tr>
                         }
+
                     }
+                }
                 </table>
             </center>
 
