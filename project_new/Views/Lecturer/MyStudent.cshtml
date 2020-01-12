@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/styles/navbar.css" rel="stylesheet" />
     <style>
+         .logoutLblPos {
+            position: fixed;
+            right:5px;
+            top: 8px;
+        }
         body {
             background: url("../images/login-img.jpg");
             background-repeat: no-repeat;
@@ -104,6 +109,11 @@
             <a href="/Lecturer/LecturerSchedule" class="Button">Schedule</a>
             <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
             <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
+
+            </form>
         </div>
         <center>
             <h2>Find Course</h2>
@@ -134,7 +144,7 @@
 
                             foreach (var item in Model.info)
                             {
-                            <tr style="color:white">
+                            <tr style="color:black">
                                 <td>@Html.DisplayFor(m => item.coursename)</td>
                                 <td>@Html.DisplayFor(m => item.StudentId)</td>
                                 <td>@Html.DisplayFor(m => item.FirstNameStu)</td>

@@ -1,6 +1,6 @@
 ﻿@using project_new.Models
 <!DOCTYPE html>
-<
+
 <html>
 
 <head>
@@ -12,8 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/styles/For tables.css" rel="stylesheet" />
     <link href="~/styles/navbar.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        .logoutLblPos {
+            position: fixed;
+            right: 5px;
+            top: 8px;
+        }
+
         body {
             background: url("../images/login-img.jpg");
             background-repeat: no-repeat;
@@ -26,23 +31,27 @@
             -ms-background-size: cover;
             font-family: 'Raleway', sans-serif;
         }
+
         table {
-          border-collapse: collapse;
-          width: 100%;
+            border-collapse: collapse;
+            width: 100%;
         }
 
         th, td {
-          text-align: left;
-          padding: 8px;
+            text-align: left;
+            padding: 8px;
         }
 
-        tr:nth-child(even){background-color: #0026ff}
+        tr:nth-child(even) {
+            background-color: #0026ff
+        }
 
         th {
-          background-color: #4CAF50;
-          color: black;
+            background-color: #4CAF50;
+            color: black;
         }
-</style>
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         table {
             border-collapse: collapse;
@@ -68,6 +77,11 @@
             <a href="/Student/StudentExams" class="Button"> Exams</a>
             <a href="/Student/StudentCourse" class="Button"> Schedule</a>
             <a href="/Student/StudentGrades" class="Button"> Grades</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
+
+            </form>
         </div>
         <center>
             <h1 style="color:black">Courses details</h1>
@@ -84,7 +98,7 @@
                     @foreach (Course_StuCourse_Lec x in ViewBag.Cour)
                     {
 
-                    <tr style="color:white">
+                    <tr style="color:black">
                         <td>@x.coursename</td>
                         <td>@x.FirstNameLec @x.LastNameLec</td>
                         <td>@x.Day</td>

@@ -1,7 +1,6 @@
 ﻿@model project_new.Models.Courses
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,6 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/styles/navbar.css" rel="stylesheet" />
     <style>
+        .logoutLblPos {
+            position: fixed;
+            right: 5px;
+            top: 8px;
+        }
+
         body {
             background: url("../images/login-img.jpg");
             background-repeat: no-repeat;
@@ -22,8 +27,63 @@
             -ms-background-size: cover;
             font-family: 'Raleway', sans-serif;
         }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #0026ff
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: black;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: grey;
+        }
+    </style>
     <style>
         table {
             border-collapse: collapse;
@@ -41,7 +101,6 @@
             background-color: grey;
         }
     </style>
-
 </head>
 <body>
     <div>
@@ -50,9 +109,14 @@
             <a href="/Lecturer/LecturerSchedule" class="Button">Schedule</a>
             <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
             <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
+
+            </form>
         </div>
         <center>
-            <h1 style="color:white">Schedule details</h1>
+            <h1 style="color:black">Schedule details</h1>
             <table id="customers">
                 <tr style="color:white">
                     <th>Course</th>
@@ -60,7 +124,7 @@
                     <th>Hour</th>
                     <th>Class</th>
                 </tr>
-                <strong style="color:white">
+                <strong style="color:black">
                     Hey @Session["Username"], This is your schedule.
                 </strong>
                 <tr>
@@ -71,7 +135,7 @@
 
                             foreach (var item in Model.info)
                             {
-                            <tr style="color:white">
+                            <tr style="color:black">
                                 <td>@Html.DisplayFor(m => item.CourseName)</td>
 
                                 <td>@Html.DisplayFor(m => item.Day)</td>
@@ -85,10 +149,7 @@
                 }
 
                 </table>
-
             </center>
-
         </div>
-
     </body>
 </html>

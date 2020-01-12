@@ -55,7 +55,7 @@ namespace project_new.Controllers
                 Session["Type"] = login_usr.type;
                 Session["ID"] = login_usr.UserId;
 
-                if (login_usr.type == "student")
+                if (login_usr.type == "Student")
                 {
                     return View("StudentHomePage", login_usr);
                 }

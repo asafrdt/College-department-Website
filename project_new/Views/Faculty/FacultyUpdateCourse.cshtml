@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/styles/navbar.css" rel="stylesheet" />
     <style>
+     .logoutLblPos {
+            position: fixed;
+            right:5px;
+            top: 8px;
+        }
         body {
             background: url("../images/login-img.jpg");
             background-repeat: no-repeat;
@@ -46,7 +51,11 @@
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
 
+            </form>
         </div>
         <center>
             @if ((string)@Session["error"] == "Course Not exist")

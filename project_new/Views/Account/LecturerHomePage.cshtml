@@ -3,12 +3,49 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>LecturerHomePage</title>
+    <title>LecturerCourse</title>
     <link href="~/styles/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/styles/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/styles/navbar.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url("../images/login-img.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            font-family: 'Raleway', sans-serif;
+        }
 
+        .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            width: 50%; /* Set a width if needed */
+            display: block; /* Make the buttons appear below each other */
+        }
+
+            .btn-group button:not(:last-child) {
+                border-bottom: none; /* Prevent double borders */
+            }
+
+            /* Add a background color on hover */
+            .btn-group button:hover {
+                background-color: #3e8e41;
+            }
+
+        .logoutLblPos {
+            position: fixed;
+            right: 5px;
+            top: 8px;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -17,8 +54,16 @@
             <a href="/Lecturer/LecturerSchedule" class="Button">Schedule</a>
             <a href="/Lecturer/LecturerUpdateExamsGrades" class="Button">Exams</a>
             <a href="/Lecturer/LecturerCourse" class="Button">Course</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
+
+            </form>
         </div>
-        <h1> Welcome </h1>
+        <center>
+
+            <h2 style="color:black"> Welcome to Lecturer system.<br />here you can:<br />1. Watch your Courses scedule <br />2. edit your Students exams<br />3.Watch your students due to course name </h2>
+            </center>
     </div>
 
 </body>

@@ -185,6 +185,8 @@ namespace Project.Controllers
 
         public ActionResult LecturerUpdateExamsGrades()
         {
+            @Session["error"] = "";
+
             var id = (int)Session["ID"];
 
             if (Request.Form["CourseIdTB"] != null && Request.Form["StudentIdTB"] != null && Request.Form["NewGradeBTB"] != null)
@@ -256,6 +258,8 @@ namespace Project.Controllers
 
             else if (Request.Form["CourseIdTB"] != null && Request.Form["StudentIdTB"] != null && Request.Form["NewGradeATB"] != null)
             {
+                @Session["error"] = "";
+
                 int CourseId = Int32.Parse(Request.Form["CourseIdTB"]);
                 int StudentId = Int32.Parse(Request.Form["StudentIdTB"]);
                 int NewGradeA = Int32.Parse(Request.Form["NewGradeATB"]);

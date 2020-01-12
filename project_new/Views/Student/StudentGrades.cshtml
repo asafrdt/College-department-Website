@@ -13,6 +13,11 @@
     <link href="~/styles/For tables.css" rel="stylesheet" />
     <link href="~/styles/navbar.css" rel="stylesheet" />
     <style>
+      .logoutLblPos {
+            position: fixed;
+            right:5px;
+            top: 8px;
+        }
         body {
             background: url("../images/login-img.jpg");
             background-repeat: no-repeat;
@@ -71,6 +76,11 @@
             <a href="/Student/StudentExams" class="Button"> Exams</a>
             <a href="/Student/StudentCourse" class="Button"> Schedule</a>
             <a href="/Student/StudentGrades" class="Button"> Grades</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
+
+            </form>
         </div>
         <center>
             <h1 style="color:black">Courses details</h1>

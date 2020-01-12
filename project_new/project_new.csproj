@@ -190,6 +190,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="styles\font.css" />
     <Content Include="styles\font-awesome.min.css" />
     <Content Include="styles\navbar.css" />
     <Content Include="styles\style.css" />
@@ -226,6 +227,7 @@
     <Content Include="Views\Student\StudentGrades.cshtml" />
     <Content Include="Views\Lecturer\LecturerUpdateExamsGrades.cshtml" />
     <Content Include="Views\Account\LecturerHomePage.cshtml" />
+    <Content Include="Views\Faculty\FacultyAddLecturer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

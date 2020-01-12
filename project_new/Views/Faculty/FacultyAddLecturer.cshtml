@@ -48,7 +48,6 @@
     </style>
 </head>
 <body>
-
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
@@ -59,39 +58,26 @@
             </form>
         </div>
         <center>
-            <h2>Update Exams Schedule</h2>
+           
+            <h2>Add New Lecturer</h2>
             <div class="btn-group">
-                <form action="/Faculty/FacultyUpdateExamsSchedule" method="post">
+                <form action="FacultyAddLecturer" method="post">
                     <div class=" pass-w3l">
-                        Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="" pattern="[0-9]{1,51}">
-                        <br />            <h2>Moed A:</h2>
-
-                        date: <br /> day: <input class="pass" type="text" name="MoedADay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedAMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">  year:<input class="pass" type="text" name="moedAYear" placeholder="1990-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
-                        <br /><button>Update Moed A</button>
-
+                        UserId: <input class="pass" type="number" name="UserId" placeholder="" required="">
+                        UserName: <input class="pass" type="text" name="UserName" placeholder="" required="" pattern="[A-Za-z]{1,50}">
+                        <br /><br /> Password: <input class="pass" type="text" name="Password" placeholder="" required="" pattern="[a-zA-Z0-9]{1,50}">
+                        FirstName: <input class="pass" type="text" name="FirstName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
+                        <br /><br /> LastName: <input class="pass" type="text" name="LastName" placeholder="" required="" pattern="[a-zA-Z]{1,50}">
                     </div>
                     <br />
-                </form>
-                <form action="/Faculty/FacultyUpdateExamsSchedule" method="post">
-                    <div class=" pass-w3l">
-                        Course id: <input class="pass" type="number" name="CourseIdTB" placeholder="" required="">
-                        <br />            <h2>Moed B:</h2>
-
-                        date: <br /> day:<input class="pass" type="text" name="moedBDay" placeholder="1-31" required="" pattern="[0-3][0-9]" maxlength="2"> month:<input class="pass" type="text" name="moedBMonth" placeholder="1-12" required="" pattern="[0-1][0-9]" maxlength="2">   year:<input class="pass" type="text" name="moedBYear" placeholder="1990-2999" required="" pattern="[1-2][0-9][0-9][0-9]" maxlength="4">
-                        <br /><button>Update Moed B</button>
-
-                    </div>
-                    <br />
-                </form>
-                @if ((string)@Session["error"] == "Course Not exist")
-                {
-                    <script style="color:white" type="text/javascript ">
-                        alert("Course Not exist");
-                    </script>
-                }
-
-
-            </div>
+                    <button>Add Lecturer</button>
+                    @if ((string)@Session["error"] == "Lecturer Allready Exist in the System")
+                    {
+                        <script style="color:white" type="text/javascript ">
+                            alert("Lecturer Allready Exist in the System");
+                        </script>
+                    }
+</div>
         </center>
     </div>
 

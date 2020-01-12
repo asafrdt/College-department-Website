@@ -13,10 +13,11 @@ namespace project_new.Controllers
 {
     public class FacultyController : Controller
     {
-       
+
         public ActionResult FacultyAddStudent(Courses cour)
         {
-            
+
+            @Session["error"] = "";
             if (Request.Form["UserId"] != null && Request.Form["UserName"] != null && Request.Form["Password"] != null)
             {
                 int UserId = Int32.Parse(Request.Form["UserId"]);
@@ -61,7 +62,7 @@ namespace project_new.Controllers
                 int Studentid = Int32.Parse(Request.Form["Studentid"]);
                 string CourseId = Request.Form["CourseId"].ToString();
                 SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
-     
+
                 SqlDataAdapter sda = new SqlDataAdapter("select sicStudentId,sicCourseId from [StudentCourses] where sicStudentId ='" + Studentid + "' and sicCourseId ='" + CourseId + "'", con);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
@@ -70,7 +71,7 @@ namespace project_new.Controllers
                     @Session["error"] = "Student Allready Sign to this course";
                     return View("FacultyAddStudent");
                 }
-                SqlDataAdapter sda1 = new SqlDataAdapter("select Studentid from [Student] where StudentId ='" + Studentid +"'", con);
+                SqlDataAdapter sda1 = new SqlDataAdapter("select Studentid from [Student] where StudentId ='" + Studentid + "'", con);
                 DataTable dt1 = new DataTable();
                 sda1.Fill(dt1);
                 if (dt1.Rows.Count != 1)
@@ -86,48 +87,50 @@ namespace project_new.Controllers
                     @Session["error"] = "Course not exist";
                     return View("FacultyAddStudent");
                 }
-                
-                    SqlCommand sda4 = new SqlCommand("select day,startHour,endHour from Course where CourseId ='" + CourseId + "'", con);
-                    sda4.Connection = con;
-                    con.Open();
-                    SqlDataReader sdr = sda4.ExecuteReader();
 
-                    List<Courses> objmodel = new List<Courses>();
-                    if (sdr.HasRows)
-                    {
-                        while (sdr.Read())
-                        {
-                            var details = new Courses();
-                            details.Day = sdr["day"].ToString();
-                            details.startHour = TimeSpan.Parse(sdr["startHour"].ToString());
-                            details.endHour = TimeSpan.Parse(sdr["endHour"].ToString());
-                            objmodel.Add(details);
+                SqlCommand sda4 = new SqlCommand("select day,startHour,endHour from Course where CourseId ='" + CourseId + "'", con);
+                sda4.Connection = con;
+                con.Open();
+                SqlDataReader sdr = sda4.ExecuteReader();
 
-                        }
-                        cour.info = objmodel;
-                        con.Close();
-                        
-                    }
-                    if (!CheckCoursesStu(cour,Studentid, cour.CourseId, cour.info[0].Day, cour.info[0].startHour, cour.info[0].endHour))
+                List<Courses> objmodel = new List<Courses>();
+                if (sdr.HasRows)
+                {
+                    while (sdr.Read())
                     {
-                        @Session["error"] = "Cannot register for course due to overlapping schedule";
-                        return View("FacultyAddStudent");
+                        var details = new Courses();
+                        details.Day = sdr["day"].ToString();
+                        details.startHour = TimeSpan.Parse(sdr["startHour"].ToString());
+                        details.endHour = TimeSpan.Parse(sdr["endHour"].ToString());
+                        objmodel.Add(details);
+
                     }
-                    else
-                    {
-                        SqlCommand sda3 = new SqlCommand(@"INSERT INTO [StudentCourses] (sicStudentId, sicCourseId) VALUES ('" + Studentid + "', '" + CourseId + "')", con);
-                        SqlDataAdapter da = new SqlDataAdapter(sda3);
-                        DataSet ds = new DataSet();
-                        da.Fill(ds);
-                    }
-                
+                    cour.info = objmodel;
+                    con.Close();
+
+                }
+                if (!CheckCoursesStu(cour, Studentid, cour.CourseId, cour.info[0].Day, cour.info[0].startHour, cour.info[0].endHour))
+                {
+                    @Session["error"] = "Cannot register for course due to overlapping schedule";
+                    return View("FacultyAddStudent");
+                }
+                else
+                {
+                    SqlCommand sda3 = new SqlCommand(@"INSERT INTO [StudentCourses] (sicStudentId, sicCourseId) VALUES ('" + Studentid + "', '" + CourseId + "')", con);
+                    SqlDataAdapter da = new SqlDataAdapter(sda3);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                }
+
             }
             return View("FacultyAddStudent");
         }
 
         public ActionResult FacultyAddCourse(Courses cour)
         {
-            if (Request.Form["CourseId"] != null && Request.Form["CourseName"] != null && Request.Form["LecturerId"] != null && Request.Form["Day"] != null && Request.Form["Class"] != null && Request.Form["StartHour"] != null && Request.Form["EndHour"] != null 
+            @Session["error"] = "";
+
+            if (Request.Form["CourseId"] != null && Request.Form["CourseName"] != null && Request.Form["LecturerId"] != null && Request.Form["Day"] != null && Request.Form["Class"] != null && Request.Form["StartHour"] != null && Request.Form["EndHour"] != null
                 && Request.Form["MoedADay"] != null && Request.Form["MoedAMonth"] != null && Request.Form["MoedAYear"] != null && Request.Form["MoedBDay"] != null && Request.Form["MoedBMonth"] != null && Request.Form["MoedBYear"] != null && Request.Form["MoedAClass"] != null && Request.Form["MoedBClass"] != null)
             {
                 int CourseId = Int32.Parse(Request.Form["CourseId"]);
@@ -163,7 +166,7 @@ namespace project_new.Controllers
                     }
                     else
                     {
-                         con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
+                        con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
                         SqlCommand sda1 = new SqlCommand(@"INSERT INTO [Course] (CourseId, coursename ,LecturerId, Day,startHour,endHour,class,moedAYear,moedAMonth,moedADay,classA,moedBYear,moedBMonth,moedBDay,classb) VALUES ('" + CourseId + "', '" + CourseName + "', '" + LecturerId + "', '" + Day + "', '" + StartHour + "', '" + EndHour + "', '" + Class + "', '" + MoedAYear + "', '" + MoedAMonth + "', '" + MoedADay + "', '" + MoedAClass + "', '" + MoedBYear + "', '" + MoedBMonth + "', '" + MoedBDay + "', '" + MoedBClass + "')", con);
                         SqlDataAdapter da = new SqlDataAdapter(sda1);
                         DataSet ds = new DataSet();
@@ -176,7 +179,7 @@ namespace project_new.Controllers
 
             return View("FacultyAddCourse");
         }
-        public bool CheckCoursesStu(Courses cour,int Studentid ,int courseId, string day, TimeSpan startHour, TimeSpan endHour)
+        public bool CheckCoursesStu(Courses cour, int Studentid, int courseId, string day, TimeSpan startHour, TimeSpan endHour)
         {
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
             SqlCommand sda1 = new SqlCommand("select f.starthour,f.endhour from course c,(select day, starthour, endhour from course, (select siccourseid from StudentCourses where sicStudentId = '" + Studentid + "')d where d.sicCourseId=CourseId ) f where f.day=c.day and CourseId= '" + courseId + "'", con);
@@ -200,7 +203,7 @@ namespace project_new.Controllers
             }
             else
             {
-                cour.info= objmodel;
+                cour.info = objmodel;
             }
 
 
@@ -215,7 +218,7 @@ namespace project_new.Controllers
             }
             return true;
         }
-        public bool CheckCoursesLec(Courses cour,int LecturerId, int courseId, string day, TimeSpan startHour, TimeSpan endHour)
+        public bool CheckCoursesLec(Courses cour, int LecturerId, int courseId, string day, TimeSpan startHour, TimeSpan endHour)
         {
             SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
             SqlCommand sda1 = new SqlCommand("select DISTINCT f.starthour,f.endhour from course c,(select day,starthour,endhour from course where LecturerId= '" + LecturerId + "')f where f.Day = '" + day + "'", con);
@@ -257,6 +260,8 @@ namespace project_new.Controllers
 
         public ActionResult FacultyUpdateCourse()
         {
+            @Session["error"] = "";
+
             if (Request.Form["CourseIdTB"] != null && Request.Form["StartHourTB"] != null && Request.Form["EndHourTB"] != null && Request.Form["DayTB"] != null)
             {
                 int CourseId = Int32.Parse(Request.Form["CourseIdTB"]);
@@ -291,6 +296,7 @@ namespace project_new.Controllers
 
         public ActionResult FacultyUpdateExamsSchedule()
         {
+            @Session["error"] = "";
 
             if (Request.Form["CourseIdTB"] != null && Request.Form["moedADay"] != null && Request.Form["moedAMonth"] != null && Request.Form["moedAYear"] != null)
             {
@@ -347,13 +353,15 @@ namespace project_new.Controllers
                     return View("FacultyUpdateExamsSchedule");
                 }
             }
-           
+
             return View("FacultyUpdateExamsSchedule");
         }
 
 
         public ActionResult FacultyUpdateExamsGrades()
         {
+            @Session["error"] = "";
+
             if (Request.Form["CourseIdTB"] != null && Request.Form["StudentIdTB"] != null && Request.Form["NewGradeBTB"] != null)
             {
                 int CourseId = Int32.Parse(Request.Form["CourseIdTB"]);
@@ -443,7 +451,7 @@ namespace project_new.Controllers
                 sda.Fill(dt);
                 if (dt.Rows.Count == 1)
                 {
-                    SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedBYear = '" + DateTime.Now.Year + "' and moedBMonth = '" + DateTime.Now.Month + "' and moedBDay <= '" + DateTime.Now.Day + "') or (moedBYear = '" + DateTime.Now.Year + "' and moedBMonth < '" + DateTime.Now.Month + "') or ( moedBYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
+                    SqlDataAdapter sda4 = new SqlDataAdapter("select CourseId from Course where ((moedAYear = '" + DateTime.Now.Year + "' and moedAMonth = '" + DateTime.Now.Month + "' and moedADay <= '" + DateTime.Now.Day + "') or (moedAYear = '" + DateTime.Now.Year + "' and moedAMonth < '" + DateTime.Now.Month + "') or ( moedAYear < '" + DateTime.Now.Year + "')) and CourseId =  '" + CourseId + "'", con);
                     DataTable dt4 = new DataTable();
                     sda4.Fill(dt4);
                     if (dt4.Rows.Count == 1)
@@ -470,6 +478,53 @@ namespace project_new.Controllers
             }
 
             return View("FacultyUpdateExamsGrades");
+        }
+        public ActionResult FacultyAddLecturer(Courses cour)
+        {
+            @Session["error"] = "";
+
+            if (Request.Form["UserId"] != null && Request.Form["UserName"] != null && Request.Form["Password"] != null)
+            {
+                int UserId = Int32.Parse(Request.Form["UserId"]);
+                string UserName = Request.Form["UserName"].ToString();
+                string Password = Request.Form["Password"].ToString();
+                string UserType = "lecturer";
+                string FirstName = Request.Form["FirstName"].ToString();
+                string LastName = Request.Form["LastName"].ToString();
+
+                SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-23GVLKN;database=WPF;Integrated Security=SSPI");
+                SqlDataAdapter sda = new SqlDataAdapter("select UserId from [User] where UserId ='" + UserId + "'", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count == 1)
+                {
+                    //message box "Student Allready Exist!
+                    @Session["error"] = "Lecturer Allready Exist in the System";
+                    return View("FacultyAddLecturer");
+
+                }
+                else
+                {
+                    //insert Student into User Table
+                    SqlCommand sda1 = new SqlCommand(@"INSERT INTO [User] (UserId, UserName, Password, type) VALUES ('" + UserId + "', '" + UserName + "', '" + Password + "', '" + UserType + "')", con);
+                    SqlDataAdapter da = new SqlDataAdapter(sda1);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+
+                    //insert Student into Student Table
+                    SqlCommand sda2 = new SqlCommand(@"INSERT INTO [Lecturer] (liLecturerId, FirstNameLec, LastNameLec) VALUES ('" + UserId + "', '" + FirstName + "', '" + LastName + "')", con);
+                    SqlDataAdapter da1 = new SqlDataAdapter(sda2);
+                    DataSet ds1 = new DataSet();
+                    da1.Fill(ds1);
+
+
+                    con.Close();
+
+                }
+            }
+            return View("FacultyAddLecturer");
+
+
         }
     }
 

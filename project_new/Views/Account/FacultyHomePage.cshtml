@@ -41,13 +41,23 @@
             .btn-group button:hover {
                 background-color: #3e8e41;
             }
+
+        .logoutLblPos {
+            position: fixed;
+            right:5px;
+            top: 8px;
+        }
     </style>
 </head>
 <body>
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
 
+</form>
         </div>
             <center>
                 <h2>Faculty Page</h2>
@@ -82,6 +92,12 @@
                     <form action="/Faculty/FacultyUpdateExamsGrades" method="post">
                         <div class=" pass-w3l">
                             <button>Update Exams Grades</button>
+
+                        </div>
+                    </form>
+                    <form action="/Faculty/FacultyAddLecturer" method="post">
+                        <div class=" pass-w3l">
+                            <button>Add Lecturer</button>
 
                         </div>
                     </form>

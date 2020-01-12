@@ -40,13 +40,22 @@
             .btn-group button:hover {
                 background-color: #3e8e41;
             }
+        .logoutLblPos {
+            position: fixed;
+            right:5px;
+            top: 8px;
+        }
     </style>
 </head>
 <body>
     <div>
         <div class="navbar">
             <a href="/Account/FacultyHomePage" class="Button">Home</a>
+            <form align="right" name="form1" method="post" action="log_out.php">
+                <label class="logoutLblPos">
+                    <a href="/Account/Login" class="Button">Logout</a>
 
+            </form>
         </div>
         <center>
             <h2>Add New Course:</h2>
